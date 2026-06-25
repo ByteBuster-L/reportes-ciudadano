@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Alertas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+    
+        <header class="top-bar-alerts">
+            <h1>Centro de Alertas</h1>
+            <i class="fa-solid fa-bell"></i>
+        </header>
+
+        <div class="alerts-timeline">
+            <div class="alert-card critical">
+                <div class="alert-icon"><i class="fa-solid fa-droplet"></i></div>
+                <div class="alert-content">
+                    <span class="alert-time">Hoy, 8:00 PM</span>
+                    <h3>Tandeo de Agua</h3>
+                    <p>Corte programado en tu colonia. El servicio se reanudará mañana a las 6:00 AM.</p>
+                </div>
+            </div>
+            <div class="alert-card">
+                <div class="alert-icon"><i class="fa-solid fa-truck"></i></div>
+                <div class="alert-content">
+                    <span class="alert-time">Mañana, 7:00 AM</span>
+                    <h3>Camión Recolector</h3>
+                    <p>Ruta habitual. Recuerda sacar tus bolsas bien cerradas.</p>
+                </div>
+            </div>
+
+            <div class="alert-card resolved">
+                <div class="alert-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="alert-content">
+                    <span class="alert-time">Ayer, 10:00 AM</span>
+                    <h3>Mantenimiento Eléctrico</h3>
+                    <p>Reparación de luminarias completada en la calle principal.</p>
+                </div>
+            </div>
+
+        </div>
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item"><i class="fa-regular fa-user"></i></a>
+            <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+            <a href="alertas.html" class="nav-item active"><i class="fa-solid fa-list"></i></a>
+        </nav>
+
+    </div>
+</body>
+</html>

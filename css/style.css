@@ -1,0 +1,548 @@
+/* Paleta de Colores estricta */
+:root {
+    --color-1: #EDE8D0; /* Fondo general y tarjetas */
+    --color-2: #C9C5B1; /* Buscador, saludo, y nav inferior */
+    --color-3: #787569; /* Textos secundarios */
+    --color-4: #4F4D46; /* Textos principales e íconos */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #2b2b2b; /* Fondo oscuro exterior para simular celular en PC */
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    background-color: var(--color-1);
+    width: 100%;
+    max-width: 414px; /* Ancho estándar de móvil */
+    position: relative;
+    padding: 20px 20px 90px 20px; /* Espacio inferior para el nav */
+    overflow-x: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* ================= Top Bar ================= */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.search-bar {
+    background-color: var(--color-2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    flex-grow: 1;
+}
+
+.search-bar i {
+    color: var(--color-4);
+    margin-right: 10px;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    color: var(--color-4);
+    font-size: 16px;
+    width: 100%;
+}
+
+.search-bar input::placeholder {
+    color: var(--color-3);
+}
+
+.profile-avatar {
+    width: 45px;
+    height: 45px;
+    background-color: var(--color-4);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-1);
+    font-size: 20px;
+}
+
+/* ================= Tarjeta de Saludo ================= */
+.greeting-card {
+    background-color: var(--color-2);
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.08); /* Sombra suave de la maqueta */
+}
+
+.greeting-card h1 {
+    color: var(--color-4);
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.greeting-card p {
+    color: var(--color-3);
+    font-size: 15px;
+}
+
+/* ================= Filtros ================= */
+.filters {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.filters::-webkit-scrollbar {
+    display: none; /* Oculta scrollbar en Chrome/Safari */
+}
+
+.filter-btn {
+    background-color: var(--color-1);
+    border: 2px solid var(--color-3);
+    color: var(--color-4);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+    background-color: var(--color-4);
+    color: var(--color-1);
+    border-color: var(--color-4);
+}
+
+/* ================= Lista de Reportes ================= */
+.reports-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.report-card {
+    background-color: var(--color-1);
+    border-radius: 12px;
+    padding: 20px 25px;
+    box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.12); /* Réplica de la sombra de tu diseño */
+    position: relative;
+    border: 1px solid rgba(201, 197, 177, 0.5); /* Borde sutil del --color-2 */
+}
+
+/* Etiquetas de Estado */
+.status-badge {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background-color: var(--color-4);
+    color: var(--color-1);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.card-text h2 {
+    color: var(--color-4);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.card-text p {
+    color: var(--color-3);
+    font-size: 14px;
+}
+
+.card-icon i {
+    font-size: 45px;
+    color: var(--color-4);
+}
+
+/* ================= Botón Flotante ================= */
+.fab-btn {
+    position: absolute;
+    bottom: 100px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-4);
+    color: var(--color-1);
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* ================= Nav Inferior ================= */
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-2);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.nav-item {
+    color: var(--color-4);
+    font-size: 26px;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.nav-item:hover {
+    transform: scale(1.1);
+}
+
+/* ================= Nuevo Reporte ================= */
+.top-bar-back {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.back-btn {
+    background-color: var(--color-4);
+    color: var(--color-1);
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.top-bar-back h1 {
+    color: var(--color-4);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--color-4);
+    font-weight: 700;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+/* Selector de Categorías (Ocultar el input nativo) */
+.category-selector {
+    display: flex;
+    gap: 12px;
+}
+
+.category-option {
+    flex: 1;
+    cursor: pointer;
+}
+
+.category-option input {
+    display: none;
+}
+
+/* Tarjetas de Selección */
+.category-card {
+    background-color: var(--color-2);
+    border: 3px solid transparent;
+    border-radius: 12px;
+    padding: 15px 10px;
+    text-align: center;
+    color: var(--color-4);
+    transition: all 0.2s ease;
+}
+
+.category-card i {
+    font-size: 26px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.category-card span {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Estado Activo (Seleccionado) */
+.category-option input:checked + .category-card {
+    background-color: var(--color-4);
+    color: var(--color-1);
+    border-color: var(--color-4);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Mapa Placeholder */
+.map-placeholder {
+    background-color: var(--color-4);
+    height: 160px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Patrón de puntos para el mapa */
+.map-placeholder::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(var(--color-3) 2px, transparent 2px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+}
+
+.map-placeholder i {
+    font-size: 35px;
+    margin-bottom: 10px;
+    z-index: 1;
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.map-placeholder p {
+    z-index: 1;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Área de Upload Fotográfico */
+.photo-upload {
+    background-color: var(--color-1);
+    border: 3px dashed var(--color-4);
+    border-radius: 12px;
+    padding: 35px;
+    text-align: center;
+    color: var(--color-4);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.photo-upload:hover {
+    background-color: var(--color-2);
+}
+
+.photo-upload i {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.photo-upload p {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* Textarea de Detalles */
+textarea {
+    width: 100%;
+    background-color: var(--color-2);
+    border: none;
+    border-radius: 12px;
+    padding: 18px;
+    color: var(--color-4);
+    font-size: 15px;
+    resize: none;
+    height: 110px;
+    outline: none;
+}
+
+textarea::placeholder {
+    color: var(--color-3);
+    font-weight: 600;
+}
+
+/* Botón Enviar Principal */
+.submit-btn {
+    background-color: var(--color-4);
+    color: var(--color-1);
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Animación del pin de ubicación */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ================= Centro de Alertas ================= */
+.top-bar-alerts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-2);
+}
+
+.top-bar-alerts h1 {
+    color: var(--color-4);
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.top-bar-alerts i {
+    font-size: 24px;
+    color: var(--color-4);
+    animation: ring 4s infinite ease-in-out;
+    transform-origin: top center;
+}
+
+.alerts-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+/* Línea de tiempo vertical de fondo */
+.alerts-timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    background-color: var(--color-2);
+    z-index: 0;
+}
+
+.alert-card {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.alert-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: var(--color-4);
+    flex-shrink: 0;
+    border: 4px solid var(--color-1); /* Efecto de corte con la línea */
+}
+
+/* Tarjeta invertida (Fondo oscuro) */
+.alert-content {
+    background-color: var(--color-4);
+    color: var(--color-1);
+    padding: 15px;
+    border-radius: 12px;
+    flex-grow: 1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.alert-time {
+    display: block;
+    font-size: 12px;
+    color: var(--color-2);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.alert-content h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.alert-content p {
+    font-size: 14px;
+    color: var(--color-1);
+    opacity: 0.9;
+}
+
+/* Variantes de color según urgencia */
+.alert-card.critical .alert-icon {
+    background-color: var(--color-4);
+    color: var(--color-1);
+}
+
+.alert-card.critical .alert-content {
+    border-left: 5px solid var(--color-2);
+}
+
+/* Alerta antigua/informativa (Colores claros) */
+.alert-card.resolved .alert-content {
+    background-color: var(--color-2);
+    color: var(--color-4);
+}
+
+.alert-card.resolved .alert-time, 
+.alert-card.resolved .alert-content p {
+    color: var(--color-4);
+}
+
+/* Animación de la campana */
+@keyframes ring {
+    0%, 10%, 100% { transform: rotate(0); }
+    2% { transform: rotate(15deg); }
+    4% { transform: rotate(-10deg); }
+    6% { transform: rotate(5deg); }
+    8% { transform: rotate(-5deg); }
+}

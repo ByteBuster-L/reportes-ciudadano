@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Reporte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header class="top-bar-back">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-chevron-left"></i></a>
+            <h1>Crear Reporte</h1>
+        </header>
+
+        <form class="report-form" id="form-nuevo-reporte">
+            <div class="form-group">
+                <label>¿Qué vas a reportar?</label>
+                <div class="category-selector">
+                    <label class="category-option">
+                        <input type="radio" name="categoria" value="agua" checked>
+                        <div class="category-card">
+                            <i class="fa-solid fa-droplet"></i>
+                            <span>Agua</span>
+                        </div>
+                    </label>
+                    <label class="category-option">
+                        <input type="radio" name="categoria" value="luz">
+                        <div class="category-card">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Luz</span>
+                        </div>
+                    </label>
+                    <label class="category-option">
+                        <input type="radio" name="categoria" value="basura">
+                        <div class="category-card">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>Basura</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Ubicación exacta</label>
+                <div id="mapa" class="map-placeholder" style="z-index: 1;"></div>
+            </div>
+            <div class="form-group">
+                <label>Evidencia fotográfica</label>
+                <input type="file" id="input-foto" accept="image/*" capture="environment" style="display: none;">
+                
+                <div class="photo-upload" id="btn-foto">
+                    <img id="preview-foto" src="" alt="Vista previa" style="display: none; width: 100%; border-radius: 8px; margin-bottom: 10px; border: 2px solid var(--color-4);">
+                    <i class="fa-solid fa-camera" id="icono-camara"></i>
+                    <p id="texto-camara">Toca para tomar o subir foto</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Detalles adicionales</label>
+                <textarea placeholder="Describe brevemente el problema (ej. Fuga de agua en una tuberia)..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="btn-enviar">ENVIAR REPORTE</button>
+        </form>
+
+    </div>
+    <script type ="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes Ciudadanos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="app-container">
+        <header class="top-bar">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar">
+            </div>
+            <div class="profile-avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </header>
+        <section class="greeting-card">
+            <h1>Hola Yael</h1>
+            <p>Reportes ciudadanos</p>
+        </section>
+        <section class="filters">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="agua"><i class="fa-solid fa-droplet"></i> Agua</button>
+            <button class="filter-btn" data-filter="luz"><i class="fa-solid fa-bolt"></i> Luz</button>
+            <button class="filter-btn" data-filter="basura"><i class="fa-solid fa-trash-can"></i> Basura</button>
+        </section>
+        <section class="reports-list">
+            <div class="report-card" data-category="agua">
+                <span class="status-badge status-review">En revisión</span>
+                <div class="card-content">
+                    <div class="card-text">
+                        <h2>Urgente</h2>
+                        <p>Calle tulipanes no 123</p>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="report-card" data-category="luz">
+                <span class="status-badge status-attended">Atendido</span>
+                <div class="card-content">
+                    <div class="card-text">
+                        <h2>Medio</h2>
+                        <p>Calle tulipanes no 123</p>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="report-card" data-category="basura">
+                <span class="status-badge status-process">En proceso</span>
+                <div class="card-content">
+                    <div class="card-text">
+                        <h2>Bajo</h2>
+                        <p>Calle tulipanes no 123</p>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <button>
+            <a href="nuevo-reporte.html" class="fab-btn" style="display: flex; justify-content: center; align-items: center; text-decoration: none;"><i class="fa-solid fa-plus"></i></a>
+        </button>
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item"><i class="fa-regular fa-user"></i></a>
+            <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+            <a href="alertas.html" class="nav-item"><i class="fa-solid fa-list"></i></a>
+        </nav>
+
+    </div>
+    <script type ="module" src="js/app.js"></script>
+</body>
+</html>
