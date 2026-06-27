@@ -17,14 +17,20 @@ export { db, collection, addDoc, getDocs };
 
 document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.report-card');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            // 1. Cambiar el botón activo
             document.querySelector('.filter-btn.active').classList.remove('active');
             btn.classList.add('active');
+            
             const filterValue = btn.getAttribute('data-filter');
-            cards.forEach(card => {
+            
+            // 2. ¡EL TRUCO! Buscar las tarjetas AHORA, cuando Firebase ya las inyectó
+            const cardsActualizadas = document.querySelectorAll('.report-card');
+
+            // 3. Aplicar el display
+            cardsActualizadas.forEach(card => {
                 if (filterValue === 'todos' || card.getAttribute('data-category') === filterValue) {
                     card.style.display = 'flex'; 
                 } else {
@@ -111,7 +117,6 @@ if (formNuevoReporte) {
         try {
             let urlDescarga = "sin-foto-aun";
 
-            // Si hay foto, la mandamos a ImgBB en lugar de Firebase
             if (archivoFoto) {
                 btnEnviar.innerText = "SUBIENDO FOTO...";
                 
