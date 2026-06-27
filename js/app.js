@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD3NascTq7EPJQOg1Hq-XllvZyFiGoQ2Ew",
@@ -43,6 +42,12 @@ const contenedorMapa = document.getElementById('mapa');
 
 if (contenedorMapa) {
     const map = L.map('mapa').setView([19.4326, -99.1332], 13); 
+    document.getElementById('btn-limpiar')?.addEventListener('click', () => {
+        map.setView([19.4326, -99.1332], 13); 
+        marcador.setLatLng([19.4326, -99.1332]);
+        coordenadasReales = { lat: null, lng: null };
+        alert("Datos de navegación borrados.");
+    });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap'
@@ -107,22 +112,35 @@ if (formNuevoReporte) {
         try {
             let urlDescarga = "sin-foto-aun";
 
+            // Si hay foto, la mandamos a ImgBB en lugar de Firebase
             if (archivoFoto) {
                 btnEnviar.innerText = "SUBIENDO FOTO...";
                 
-                const nombreArchivo = `evidencias/${Date.now()}_${archivoFoto.name}`;
-                const storageRef = ref(storage, nombreArchivo);
-                await uploadBytes(storageRef, archivoFoto);
-                urlDescarga = await getDownloadURL(storageRef);
+                const formData = new FormData();
+                formData.append('image', archivoFoto);
+
+                const respuestaImgbb = await fetch('https://api.imgbb.com/1/upload?key=e1a59a1f20ccbf652fea8d19ee19f467', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const datosImgbb = await respuestaImgbb.json();
+                
+                if (datosImgbb.success) {
+                    urlDescarga = datosImgbb.data.url; 
+                } else {
+                    throw new Error("Fallo al subir a ImgBB");
+                }
             }
 
-            btnEnviar.innerText = "GUARDANDO COORDENADAS...";
+            btnEnviar.innerText = "GUARDANDO REPORTE...";
+
             await addDoc(collection(db, "reportes"), {
                 categoria: categoriaSeleccionada,
                 detalles: detalles,
                 estado: "En revisión",
                 fecha: new Date(), 
-                ubicacion: coordenadasReales,
+                ubicacion: coordenadasReales, 
                 fotoUrl: urlDescarga 
             });
 
@@ -130,7 +148,7 @@ if (formNuevoReporte) {
             window.location.href = 'index.html';
 
         } catch (error) {
-            console.error("Error al enviar el reporte: ", error);
+            console.error("Error en el proceso: ", error);
             alert("Hubo un error al procesar el reporte.");
             btnEnviar.innerText = textoOriginal;
             btnEnviar.disabled = false;
@@ -153,21 +171,28 @@ if (reportsList) {
                 if (data.categoria === 'agua') icono = 'fa-droplet';
                 if (data.categoria === 'luz') icono = 'fa-bolt';
                 if (data.categoria === 'basura') icono = 'fa-trash-can';
-                const cardHTML = `
-                    <div class="report-card" data-category="${data.categoria}">
-                        <span class="status-badge status-review">${data.estado}</span>
-                        <div class="card-content">
-                            <div class="card-text">
-                                <h2 style="text-transform: capitalize;">${data.categoria}</h2>
-                                <p>${data.detalles || 'Ubicación registrada'}</p>
-                            </div>
-                            <div class="card-icon">
-                                <i class="fa-solid ${icono}"></i>
-                            </div>
+                // Reemplaza tu string literal de cardHTML por esto:
+                const card = document.createElement('div');
+                card.className = 'report-card';
+                card.setAttribute('data-category', data.categoria);
+                card.innerHTML = `
+                    <span class="status-badge status-review">${data.estado}</span>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h2 style="text-transform: capitalize;">${data.categoria}</h2>
+                            <p>Toca para ver detalles</p>
                         </div>
+                        <div class="card-icon"><i class="fa-solid ${icono}"></i></div>
                     </div>
                 `;
-                reportsList.innerHTML += cardHTML;
+                // Al hacer clic, llenamos el modal y lo abrimos
+                card.addEventListener('click', () => {
+                    document.getElementById('modal-cat').innerText = data.categoria;
+                    document.getElementById('modal-det').innerText = data.detalles || 'Sin detalles';
+                    document.getElementById('modal-img').src = data.fotoUrl !== 'sin-foto-aun' ? data.fotoUrl : '';
+                    document.getElementById('modal-reporte').showModal();
+                });
+                reportsList.appendChild(card);
             });
         } catch (error) {
             console.error("Error al cargar los reportes: ", error);
