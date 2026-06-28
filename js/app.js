@@ -20,16 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // 1. Cambiar el botón activo
             document.querySelector('.filter-btn.active').classList.remove('active');
             btn.classList.add('active');
             
             const filterValue = btn.getAttribute('data-filter');
-            
-            // 2. ¡EL TRUCO! Buscar las tarjetas AHORA, cuando Firebase ya las inyectó
+        
             const cardsActualizadas = document.querySelectorAll('.report-card');
 
-            // 3. Aplicar el display
             cardsActualizadas.forEach(card => {
                 if (filterValue === 'todos' || card.getAttribute('data-category') === filterValue) {
                     card.style.display = 'flex'; 
